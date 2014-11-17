@@ -1,0 +1,12 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/scala" output="target/classes"/>
+  <classpathentry kind="src" path="src/main/java" output="target/classes"/>
+  <classpathentry kind="src" path="src/test/scala" output="target/test-classes"/>
+  <classpathentry kind="src" path="src/test/java" output="target/test-classes"/>
+  <classpathentry kind="lib" path="/home/yerlibilgin/.ivy2/local/gov.tubitak.minder/minder-common_2.11/0.0.1/jars/minder-common_2.11.jar"/>
+  <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
+  <classpathentry kind="lib" path="/home/yerlibilgin/.ivy2/cache/org.scala-lang/scala-actors/jars/scala-actors-2.11.4.jar"/>
+  <classpathentry kind="lib" path="/home/yerlibilgin/.ivy2/cache/org.scala-lang.modules/scala-xml_2.11/bundles/scala-xml_2.11-1.0.2.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="output" path="bin"/>
+</classpath>
