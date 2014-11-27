@@ -35,7 +35,7 @@ public abstract class MyWrapper extends Wrapper {
     //now emit message deliverMessageToGateway
     String as4Message = umandAs4[0];
     String partyId = umandAs4[1];
-    //
+    //bdxl ve smpden 
     this.deliverMessageToGateway(as4Message.getBytes(), partyId.getBytes());
   }
 

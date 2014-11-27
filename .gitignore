@@ -2,4 +2,6 @@
 *.jar
 target
 .cache
+.project
+.classpath
 
