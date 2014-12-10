@@ -8,6 +8,8 @@
 
 package xmlmodel.books;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -51,9 +53,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "pubDate",
     "review"
 })
-public class BookForm {
+public class BookForm implements Serializable{
 
-    @XmlElement(required = true)
+	private static final long serialVersionUID = 1L;
+	
+	@XmlElement(required = true)
     protected String author;
     @XmlElement(required = true)
     protected String title;

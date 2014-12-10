@@ -8,8 +8,10 @@
 
 package xmlmodel.books;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -38,9 +40,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "BooksForm", propOrder = {
     "book"
 })
-public class BooksForm {
+public class BooksForm implements Serializable{
 
-    protected List<BookForm> book;
+	private static final long serialVersionUID = 1L;
+	
+	protected List<BookForm> book;
 
     /**
      * Gets the value of the book property.
