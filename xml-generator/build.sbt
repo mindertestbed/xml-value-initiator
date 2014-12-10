@@ -1,10 +1,8 @@
-organization := "com.xyz"
+organization := "gov.tubitak.minder.test"
 
-name := "sample-gw-wrapper"
+name := "xml-generator"
 
 version := "0.0.1"
-
-resolvers += "Eid public repository" at "http://eidrepo:8081/nexus/content/groups/public/"
 
 resolvers += Resolver.mavenLocal
 
