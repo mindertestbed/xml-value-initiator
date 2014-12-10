@@ -13,5 +13,6 @@ javacOptions in (Compile, compile) ++= Seq("-source", "1.7", "-target", "1.7")
 javacOptions in (doc) ++= Seq("-source", "1.7")
 
 libraryDependencies ++= Seq(
-  "gov.tubitak.minder" % "minder-common" % "0.0.3"
+  "gov.tubitak.minder" % "minder-common" % "0.0.3",
+  "junit" % "junit" % "4.12"
 )
