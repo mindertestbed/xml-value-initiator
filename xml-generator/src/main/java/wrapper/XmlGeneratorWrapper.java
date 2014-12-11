@@ -16,6 +16,10 @@ public abstract class XmlGeneratorWrapper extends Wrapper {
   private LinkedBlockingQueue<byte[]> requestQueue;
   private final int NUMBER_OF_WORKER_THREAD=5;
   
+  public byte[] take() throws InterruptedException{
+	  return requestQueue.take();
+  }
+  
   @Override
   public void startTest() {
     isRunning = true;
@@ -24,7 +28,7 @@ public abstract class XmlGeneratorWrapper extends Wrapper {
     
     xmlWorkerList = new ArrayList<XMLWorker>();
 	for (int i = 0; i < NUMBER_OF_WORKER_THREAD; i++) {
-		XMLWorker xmlWorker = new XMLWorker(this.requestQueue);
+		XMLWorker xmlWorker = new XMLWorker(this);
 		Thread thread = new Thread(xmlWorker);
 		thread.start();
 		xmlWorkerList.add(xmlWorker);

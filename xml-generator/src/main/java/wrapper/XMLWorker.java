@@ -1,19 +1,15 @@
 package wrapper;
 
-import java.util.concurrent.LinkedBlockingQueue;
-
-import minderengine.UserDTO;
 import xmlservices.XMLGenerationService;
 
-public class XMLWorker extends XmlGeneratorWrapper implements Runnable{
-	private final LinkedBlockingQueue<byte[]> requestQueue;
-	
+public class XMLWorker implements Runnable{
 	private boolean isTerminated;
+	private XmlGeneratorWrapper xmlGeneratorWrapper;
 	
 	
-	public XMLWorker(LinkedBlockingQueue<byte[]> requestQueue) {
+	public XMLWorker(XmlGeneratorWrapper xmlGeneratorWrapper) {
+		this.xmlGeneratorWrapper = xmlGeneratorWrapper;
 		this.isTerminated = false;
-		this.requestQueue = requestQueue;
 	}
 
 	protected void terminate() {
@@ -25,7 +21,7 @@ public class XMLWorker extends XmlGeneratorWrapper implements Runnable{
 		while (!isTerminated) {
 			byte[] requestMessage=null;
 			try {
-				requestMessage = requestQueue.take();
+				requestMessage = xmlGeneratorWrapper.take();
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -41,19 +37,7 @@ public class XMLWorker extends XmlGeneratorWrapper implements Runnable{
 				e.printStackTrace();
 			}
 		    
-		    xmlProduced(generatedXML);
+		    xmlGeneratorWrapper.xmlProduced(generatedXML);
 		}
-	}
-
-	@Override
-	public void xmlProduced(byte[] generatedXML) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public UserDTO getCurrentTestUserInfo() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
