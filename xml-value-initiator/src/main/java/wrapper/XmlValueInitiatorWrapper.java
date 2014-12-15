@@ -58,7 +58,12 @@ public abstract class XmlValueInitiatorWrapper extends Wrapper {
 		if (!isRunning)
 			throw new MinderException(MinderException.E_SUT_NOT_RUNNING);
 
+		System.out.println("Client Requested #" + nrOfBooks + " from me");
 		requestQueue.add(nrOfBooks);
 	}
 
+	@Override
+	public String getLabel() {
+		return "xmlValueInitiator";
+	}
 }
