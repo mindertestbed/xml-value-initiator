@@ -11,12 +11,12 @@ public abstract class MyWrapper extends Wrapper {
   private boolean isRunning = false;
   
   @Override
-  public void start() {
+  public void startTest() {
     isRunning = true;
   }
   
   @Override
-  public void stop() {
+  public void finishTest() {
     isRunning = false;
   }
 

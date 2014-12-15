@@ -1,10 +1,8 @@
-organization := "com.xyz"
+organization := "gov.tubitak.minder.test"
 
-name := "sample-gw-wrapper"
+name := "xml-generator"
 
 version := "0.0.1"
-
-resolvers += "Eid public repository" at "http://eidrepo:8081/nexus/content/groups/public/"
 
 resolvers += Resolver.mavenLocal
 
@@ -15,5 +13,6 @@ javacOptions in (Compile, compile) ++= Seq("-source", "1.7", "-target", "1.7")
 javacOptions in (doc) ++= Seq("-source", "1.7")
 
 libraryDependencies ++= Seq(
-  "gov.tubitak.minder" % "minder-common" % "0.0.1"
+  "gov.tubitak.minder" % "minder-common" % "0.0.3",
+  "junit" % "junit" % "4.12"
 )
