@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE Report>
+<Report id="1234">
+<Header>
+</Header>
+<Title>
+</Title>
+<Body>
+<Data>
+</Data>
+</Body>
+<Footer>
+<Text id ="@ReportFooter" value="@TBS"></Text>
+</Footer>
+</Report>
