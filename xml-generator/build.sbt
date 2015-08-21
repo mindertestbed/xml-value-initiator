@@ -16,3 +16,10 @@ libraryDependencies ++= Seq(
   "gov.tubitak.minder" % "minder-common" % "0.0.3",
   "junit" % "junit" % "4.12"
 )
+
+
+publishTo := Some("eid releases" at "http://eidrepo:8081/nexus/content/repositories/releases")
+
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+
+
