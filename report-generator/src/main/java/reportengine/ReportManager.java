@@ -180,7 +180,7 @@ public class ReportManager {
 			StreamResult fresult = null;
 			StreamResult result = null;
 
-			fresult = new StreamResult(new FileWriter("samples/report1"));
+			fresult = new StreamResult(new FileWriter("samples/report1.xml"));
 			result = new StreamResult(new StringWriter());
 
 			DOMSource source = new DOMSource(doc);

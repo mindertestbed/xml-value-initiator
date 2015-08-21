@@ -14,17 +14,20 @@ public abstract class reportGeneratorWrapper extends Wrapper {
   
   private boolean isRunning = false;
   private ReportManager rmg;
-  
+  private HashMap<String, String> currentMap;
+
   @Override
   public void startTest() {
     isRunning = true;
     rmg= new ReportManager();
+    currentMap = new HashMap<>();
     
   }
   
   @Override
   public void finishTest() {
     isRunning = false;
+    currentMap = null;
   }
 
  
@@ -62,9 +65,15 @@ public abstract class reportGeneratorWrapper extends Wrapper {
       throw new MinderException(MinderException.E_SUT_NOT_RUNNING);
     rmg.setReportData(data);
   }
+
+  @Slot
+  public void updateField(String name, String value){
+    currentMap.put(name, value);
+  }
   
   @Slot
   public byte[] generateReport(){
+    rmg.setReportData(currentMap);
     return rmg.generateReport();
   }
 }

@@ -53,6 +53,7 @@ public abstract class XmlGeneratorWrapper extends Wrapper {
     if (!isRunning)
       throw new MinderException(MinderException.E_SUT_NOT_RUNNING);
 
+    System.out.println("Client wants me to generate books");
     requestQueue.add(inputBooks);
   }
 
