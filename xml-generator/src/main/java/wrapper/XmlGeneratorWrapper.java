@@ -58,7 +58,7 @@ public abstract class XmlGeneratorWrapper extends Wrapper {
   }
 
   @Override
-  public String getLabel() {
-    return "xmlGenerator";
+  public String getSUTName() {
+    return "XML Generator";
   }
 }

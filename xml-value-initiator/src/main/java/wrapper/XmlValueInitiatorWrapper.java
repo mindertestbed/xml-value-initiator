@@ -63,7 +63,7 @@ public abstract class XmlValueInitiatorWrapper extends Wrapper {
 	}
 
 	@Override
-	public String getLabel() {
-		return "xmlValueInitiator";
+	public String getSUTName() {
+		return "XML Value Initiator";
 	}
 }

@@ -8,3 +8,12 @@ target
 */.idea
 .DS_Store
 */.DS_Store
+.zip
+.iml
+.idea
+.eclipse
+.classpath
+.class
+.DS_Store
+*.zip
+*.iml
