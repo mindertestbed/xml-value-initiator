@@ -3,10 +3,7 @@ package wrapper;
 import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import minderengine.MinderException;
-import minderengine.Signal;
-import minderengine.Slot;
-import minderengine.Wrapper;
+import minderengine.*;
 import xmlservices.XMLGenerationService;
 
 public abstract class XmlGeneratorWrapper extends Wrapper {
@@ -15,6 +12,14 @@ public abstract class XmlGeneratorWrapper extends Wrapper {
   private ArrayList<XMLWorker> xmlWorkerList;
   private LinkedBlockingQueue<byte[]> requestQueue;
   private final int NUMBER_OF_WORKER_THREAD = 5;
+
+  private  SUTIdentifier sutIdentifier;
+
+  public XmlGeneratorWrapper(){
+    sutIdentifier = new SUTIdentifier();
+    sutIdentifier.setSutName("XML Generator");
+  }
+
 
   public byte[] take() throws InterruptedException {
     return requestQueue.take();
@@ -58,7 +63,7 @@ public abstract class XmlGeneratorWrapper extends Wrapper {
   }
 
   @Override
-  public String getSUTName() {
-    return "XML Generator";
+  public SUTIdentifier getSUTIdentifier() {
+    return sutIdentifier;
   }
 }

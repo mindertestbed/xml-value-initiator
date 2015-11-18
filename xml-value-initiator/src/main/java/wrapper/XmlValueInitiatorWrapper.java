@@ -3,67 +3,72 @@ package wrapper;
 import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import minderengine.MinderException;
-import minderengine.Signal;
-import minderengine.Slot;
-import minderengine.UserDTO;
-import minderengine.Wrapper;
+import minderengine.*;
 
 public abstract class XmlValueInitiatorWrapper extends Wrapper {
 
-	private boolean isRunning = false;
-	private ArrayList<XmlValueInitiatorWorker> xmlWorkerList;
-	private LinkedBlockingQueue<Integer> requestQueue;
-	private final int NUMBER_OF_WORKER_THREAD = 5;
+  private boolean isRunning = false;
+  private ArrayList<XmlValueInitiatorWorker> xmlWorkerList;
+  private LinkedBlockingQueue<Integer> requestQueue;
+  private final int NUMBER_OF_WORKER_THREAD = 5;
 
-	@Override
-	public UserDTO getCurrentTestUserInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+  private  SUTIdentifier sutIdentifier;
 
-	public Integer take() throws InterruptedException {
-		return requestQueue.take();
-	}
+  public XmlValueInitiatorWrapper(){
+    sutIdentifier = new SUTIdentifier();
+    sutIdentifier.setSutName("XML Value Initiator");
+  }
 
-	@Override
-	public void startTest() {
-		isRunning = true;
 
-		requestQueue = new LinkedBlockingQueue<Integer>();
+  @Override
+  public UserDTO getCurrentTestUserInfo() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
-		xmlWorkerList = new ArrayList<XmlValueInitiatorWorker>();
-		for (int i = 0; i < NUMBER_OF_WORKER_THREAD; i++) {
-			XmlValueInitiatorWorker xmlWorker = new XmlValueInitiatorWorker(this);
-			Thread thread = new Thread(xmlWorker);
-			thread.start();
-			xmlWorkerList.add(xmlWorker);
-		}
-	}
+  public Integer take() throws InterruptedException {
+    return requestQueue.take();
+  }
 
-	@Override
-	public void finishTest() {
-		isRunning = false;
+  @Override
+  public void startTest() {
+    isRunning = true;
 
-		for (int i = 0; i < xmlWorkerList.size(); i++) {
-			xmlWorkerList.get(i).terminate();
-		}
-	}
+    requestQueue = new LinkedBlockingQueue<Integer>();
 
-	@Signal
-	public abstract void initialDataCreated(byte[] generatedBooksData);
+    xmlWorkerList = new ArrayList<XmlValueInitiatorWorker>();
+    for (int i = 0; i < NUMBER_OF_WORKER_THREAD; i++) {
+      XmlValueInitiatorWorker xmlWorker = new XmlValueInitiatorWorker(this);
+      Thread thread = new Thread(xmlWorker);
+      thread.start();
+      xmlWorkerList.add(xmlWorker);
+    }
+  }
 
-	@Slot
-	public void generateBooksData(int nrOfBooks) {
-		if (!isRunning)
-			throw new MinderException(MinderException.E_SUT_NOT_RUNNING);
+  @Override
+  public void finishTest() {
+    isRunning = false;
 
-		System.out.println("Client Requested #" + nrOfBooks + " from me");
-		requestQueue.add(nrOfBooks);
-	}
+    for (int i = 0; i < xmlWorkerList.size(); i++) {
+      xmlWorkerList.get(i).terminate();
+    }
+  }
 
-	@Override
-	public String getSUTName() {
-		return "XML Value Initiator";
-	}
+  @Signal
+  public abstract void initialDataCreated(byte[] generatedBooksData);
+
+  @Slot
+  public void generateBooksData(int nrOfBooks) {
+    if (!isRunning)
+      throw new MinderException(MinderException.E_SUT_NOT_RUNNING);
+
+    System.out.println("Client Requested #" + nrOfBooks + " from me");
+    requestQueue.add(nrOfBooks);
+  }
+
+
+  @Override
+  public SUTIdentifier getSUTIdentifier() {
+    return sutIdentifier;
+  }
 }

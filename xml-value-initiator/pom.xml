@@ -51,12 +51,12 @@
         <dependency>
             <groupId>gov.tubitak.minder</groupId>
             <artifactId>minder-common</artifactId>
-            <version>0.3.1</version>
+            <version>0.4.0</version>
         </dependency>
         <dependency>
             <groupId>gov.tubitak.minder</groupId>
             <artifactId>minder-client</artifactId>
-            <version>0.3.1</version>
+            <version>0.4.0</version>
         </dependency>
     </dependencies>
     <distributionManagement>
