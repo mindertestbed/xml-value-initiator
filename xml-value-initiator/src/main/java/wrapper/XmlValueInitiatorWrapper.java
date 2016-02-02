@@ -12,11 +12,13 @@ public abstract class XmlValueInitiatorWrapper extends Wrapper {
   private LinkedBlockingQueue<Integer> requestQueue;
   private final int NUMBER_OF_WORKER_THREAD = 5;
 
-  private  SUTIdentifier sutIdentifier;
+  private  SUTIdentifiers sutIdentifiers;
 
   public XmlValueInitiatorWrapper(){
-    sutIdentifier = new SUTIdentifier();
-    sutIdentifier.setSutName("XML Value Initiator");
+    sutIdentifiers = new SUTIdentifiers();
+    SUTIdentifier identifier = new SUTIdentifier();
+    identifier.setSutName("XML Value Initiator");
+    sutIdentifiers.getIdentifiers().add(identifier);
   }
 
 
@@ -31,7 +33,7 @@ public abstract class XmlValueInitiatorWrapper extends Wrapper {
   }
 
   @Override
-  public void startTest() {
+  public void startTest(StartTestObject sto) {
     isRunning = true;
 
     requestQueue = new LinkedBlockingQueue<Integer>();
@@ -46,7 +48,7 @@ public abstract class XmlValueInitiatorWrapper extends Wrapper {
   }
 
   @Override
-  public void finishTest() {
+  public void finishTest(FinishTestObject fto) {
     isRunning = false;
 
     for (int i = 0; i < xmlWorkerList.size(); i++) {
@@ -68,7 +70,7 @@ public abstract class XmlValueInitiatorWrapper extends Wrapper {
 
 
   @Override
-  public SUTIdentifier getSUTIdentifier() {
-    return sutIdentifier;
+  public SUTIdentifiers getSUTIdentifiers() {
+    return sutIdentifiers;
   }
 }

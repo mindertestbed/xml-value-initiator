@@ -13,20 +13,21 @@ public abstract class XmlGeneratorWrapper extends Wrapper {
   private LinkedBlockingQueue<byte[]> requestQueue;
   private final int NUMBER_OF_WORKER_THREAD = 5;
 
-  private  SUTIdentifier sutIdentifier;
+  private SUTIdentifiers sutIdentifiers;
 
-  public XmlGeneratorWrapper(){
-    sutIdentifier = new SUTIdentifier();
-    sutIdentifier.setSutName("XML Generator");
+  public XmlGeneratorWrapper() {
+    sutIdentifiers = new SUTIdentifiers();
+    SUTIdentifier identifier = new SUTIdentifier();
+    identifier.setSutName("XML Generator");
+    sutIdentifiers.getIdentifiers().add(identifier);
   }
-
 
   public byte[] take() throws InterruptedException {
     return requestQueue.take();
   }
 
   @Override
-  public void startTest() {
+  public void startTest(StartTestObject sto) {
     isRunning = true;
 
     requestQueue = new LinkedBlockingQueue<byte[]>();
@@ -41,7 +42,7 @@ public abstract class XmlGeneratorWrapper extends Wrapper {
   }
 
   @Override
-  public void finishTest() {
+  public void finishTest(FinishTestObject fto) {
     isRunning = false;
 
     for (int i = 0; i < xmlWorkerList.size(); i++) {
@@ -63,7 +64,7 @@ public abstract class XmlGeneratorWrapper extends Wrapper {
   }
 
   @Override
-  public SUTIdentifier getSUTIdentifier() {
-    return sutIdentifier;
+  public SUTIdentifiers getSUTIdentifiers() {
+    return sutIdentifiers;
   }
 }
