@@ -28,5 +28,4 @@ public class XMLValueInitiatorService {
 		return SerializationUtils.serializeObject(booksForm);
 
 	}
-
 }

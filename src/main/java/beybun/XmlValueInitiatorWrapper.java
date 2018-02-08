@@ -1,11 +1,11 @@
-package wrapper;
+package beybun;
 
 import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import minderengine.*;
 
-public abstract class XmlValueInitiatorWrapper extends Wrapper {
+public abstract class XmlValueInitiatorWrapper extends Adapter {
 
   private boolean isRunning = false;
   private ArrayList<XmlValueInitiatorWorker> xmlWorkerList;

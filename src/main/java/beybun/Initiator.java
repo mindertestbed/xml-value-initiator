@@ -1,4 +1,4 @@
-package wrapper;
+package beybun;
 
 import gov.tubitak.minder.client.MinderClientApp;
 
@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
  */
 public class Initiator {
   public static void main(String[] args) throws InterruptedException, IOException {
-    MinderClientApp.main(args);
+    MinderClientApp.init();
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     String line = null;
